@@ -5,13 +5,7 @@ import { useMutation } from "@apollo/client";
 import { MY_MUTATION } from "../graphql/mutations";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import {
-  Button,
-  FormControl,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, FormControl, TextField, Typography } from "@mui/material";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Geçersiz e-mail adresi").required("Zorunlu alan"),
