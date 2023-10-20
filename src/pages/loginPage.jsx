@@ -81,11 +81,11 @@ const loginPage = () => {
               value={values.email}
             />
             {(
-              <Typography variant="h8" color="rgb(237,73,86)">
+              <Typography variant="h8" paddingBottom={1} color="rgb(237,73,86)">
                 {errors.email}
               </Typography>
             ) && (
-              <Typography variant="h8" color="rgb(237,73,86)">
+              <Typography variant="h8" paddingBottom={1} color="rgb(237,73,86)">
                 {errors.email}
               </Typography>
             )}
@@ -104,11 +104,11 @@ const loginPage = () => {
               value={values.password}
             />
             {(
-              <Typography color="rgb(237,73,86)" variant="h8">
+              <Typography color="rgb(237,73,86)" paddingTop={1} variant="h8">
                 {errors.password}
               </Typography>
             ) && (
-              <Typography color="rgb(237,73,86)" variant="h8">
+              <Typography color="rgb(237,73,86)" paddingTop={1} variant="h8">
                 {errors.password}
               </Typography>
             )}
@@ -116,7 +116,7 @@ const loginPage = () => {
               sx={{
                 width: "195px",
                 height: "32px",
-                marginTop: "10px",
+                marginTop: "30px",
                 borderRadius: "8px",
                 backgroundColor: "rgba(0, 149, 246)",
                 color: "white",
