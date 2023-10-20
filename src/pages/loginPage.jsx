@@ -14,7 +14,8 @@ const validationSchema = Yup.object({
 
 const loginPage = () => {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(userContext);
+
+  const { setUser } = useContext(userContext);
   const [authenticateUser] = useMutation(MY_MUTATION);
 
   return (
@@ -35,102 +36,93 @@ const loginPage = () => {
         });
       }}
     >
-      {({ handleSubmit, handleChange, values, errors }) => (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <form
-            onSubmit={handleSubmit}
-            style={{
+      {({ handleSubmit, handleChange, values, errors, isValid, ...rest }) => {
+        return (
+          <Box
+            sx={{
               display: "flex",
-              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              borderRadius: "8px",
-              border: "none",
-              backgroundColor: "#eeeeee",
-              textAlign: "center",
-              width: "250px",
-              paddingTop: "50px",
-              paddingBottom: "50px",
-              paddingRight: "25px",
-              paddingLeft: "25px",
+              height: "100vh",
             }}
           >
-            <Typography variant="h5" paddingBottom={5}>
-              Giriş Sayfası
-            </Typography>
-            <TextField
-              sx={{
-                paddingBottom: "8px",
-                borderRadius: "0",
-                width: "268px",
-                height: "50px",
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: "4px",
 
-                marginBottom: " 10px",
+                backgroundColor: "#fff",
+                border: "1px solid #d0caca",
+                textAlign: "center",
+                width: "250px",
+                padding: "32px 32px 32px 32px ",
               }}
-              label="E-Mail"
-              variant="outlined"
-              type="text"
-              name="email"
-              onChange={handleChange}
-              value={values.email}
-            />
-            {(
-              <Typography variant="h8" paddingBottom={1} color="rgb(237,73,86)">
-                {errors.email}
-              </Typography>
-            ) && (
-              <Typography variant="h8" paddingBottom={1} color="rgb(237,73,86)">
-                {errors.email}
-              </Typography>
-            )}
-            <TextField
-              sx={{
-                borderRadius: "0",
-                width: "268px",
-                height: "50px",
-                marginBottom: " 10px",
-              }}
-              label="Şifre"
-              variant="outlined"
-              type="password"
-              name="password"
-              onChange={handleChange}
-              value={values.password}
-            />
-            {(
-              <Typography color="rgb(237,73,86)" paddingTop={1} variant="h8">
-                {errors.password}
-              </Typography>
-            ) && (
-              <Typography color="rgb(237,73,86)" paddingTop={1} variant="h8">
-                {errors.password}
-              </Typography>
-            )}
-            <Button
-              sx={{
-                width: "195px",
-                height: "32px",
-                marginTop: "30px",
-                borderRadius: "8px",
-                backgroundColor: "rgba(0, 149, 246)",
-                color: "white",
-                "&:hover": {
-                  background: "#616161",
-                },
-              }}
-              type="submit"
             >
-              Giriş Yap
-            </Button>
-          </form>
-        </Box>
-      )}
+              <Typography variant="h5" paddingBottom={5}>
+                Giriş Sayfası
+              </Typography>
+              <TextField
+                fullWidth
+                size="small"
+                label="E-Mail"
+                variant="outlined"
+                type="text"
+                name="email"
+                onChange={handleChange}
+                value={values.email}
+              />
+              {(
+                <Typography
+                  variant="h8"
+                  paddingBottom={1}
+                  color="rgb(237,73,86)"
+                >
+                  {errors.email}
+                </Typography>
+              ) && (
+                <Typography
+                  variant="h8"
+                  paddingBottom={1}
+                  color="rgb(237,73,86)"
+                >
+                  {errors.email}
+                </Typography>
+              )}
+              <TextField
+                fullWidth
+                size="small"
+                label="Şifre"
+                variant="outlined"
+                type="password"
+                name="password"
+                onChange={handleChange}
+                value={values.password}
+              />
+              {(
+                <Typography color="rgb(237,73,86)" paddingTop={1} variant="h8">
+                  {errors.password}
+                </Typography>
+              ) && (
+                <Typography color="rgb(237,73,86)" paddingTop={1} variant="h8">
+                  {errors.password}
+                </Typography>
+              )}
+              <Button
+                disabled={!isValid}
+                fullWidth
+                variant="contained"
+                type="submit"
+              >
+                Giriş Yap
+              </Button>
+            </form>
+          </Box>
+        );
+      }}
     </Formik>
   );
 };
