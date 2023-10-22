@@ -6,18 +6,24 @@ import Login from "./pages/loginPage";
 import { ThemeProvider, THEME_ID, createTheme } from "@mui/material/styles";
 
 export const userContext = createContext();
+
 function App() {
   const { user, setUser } = useCustomHook();
 
-  console.log(user);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const materialTheme = createTheme({
     components: {
       MuiButton: {
         styleOverrides: {
-          // Name of the slot
           root: {
-            // Some CSS
             background: "orange",
             textTransform: "none",
           },
@@ -33,7 +39,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={user ? <MainPage /> : <Navigate to="/login " />}
+              element={user ? <MainPage /> : <Navigate to="/login" />}
             ></Route>
             <Route
               path="/login"
